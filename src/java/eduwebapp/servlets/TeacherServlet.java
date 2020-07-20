@@ -19,8 +19,10 @@ public class TeacherServlet extends HttpServlet
         
         switch (strFormId) 
         {
-            case "1":
+            case "1":                
                 System.out.println("code for insert new...");
+                String strName = request.getParameter("name");
+                String strProfession = request.getParameter("profession");
                 break;
             case "2":
                 System.out.println("code for delete...");
