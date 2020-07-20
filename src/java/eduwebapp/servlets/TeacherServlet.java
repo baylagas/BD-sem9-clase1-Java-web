@@ -21,6 +21,22 @@ public class TeacherServlet extends HttpServlet
         {
             System.out.println("code for insert new...");
         }
+        else if(strFormId.equals("2"))
+        {
+            System.out.println("code for delete...");
+        }
+        else if(strFormId.equals("3"))
+        {
+            System.out.println("code for select...");
+        }
+        else if(strFormId.equals("4"))
+        {
+            System.out.println("code for update part 1...");
+        }
+        else if(strFormId.equals("5"))
+        {
+            System.out.println("code for update part 2...");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
