@@ -1,8 +1,10 @@
 package eduwebapp.servlets;
 
 import eduwebapp.logic.TeacherLogic;
+import eduwebapp.objects.TeacherObj;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,7 @@ public class TeacherServlet extends HttpServlet
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
         request.getSession().setAttribute("rows", 0);
+        TeacherLogic logic;
         
         switch (strFormId) 
         {
@@ -28,7 +31,7 @@ public class TeacherServlet extends HttpServlet
                 System.out.println("code for insert new...");
                 String strName = request.getParameter("name");
                 String strProfession = request.getParameter("profession");
-                TeacherLogic logic = new TeacherLogic(strConnString);
+                logic = new TeacherLogic(strConnString);
                 int rows = logic.insertNewTeacher(strName, strProfession);
                 request.getSession().setAttribute("rows", rows);
                 response.sendRedirect("teacherMain.jsp");
@@ -39,6 +42,10 @@ public class TeacherServlet extends HttpServlet
                 break;
             case "3":
                 System.out.println("code for select...");
+                logic = new TeacherLogic(strConnString);
+                ArrayList<TeacherObj> teacherArray = logic.getAllTeachers();
+                request.getSession().setAttribute("teacherarray", teacherArray);
+                response.sendRedirect("teacherMain.jsp");
                 break;
             case "4":
                 System.out.println("code for update part 1...");

@@ -3,10 +3,10 @@ package eduwebapp.objects;
 public class TeacherObj 
 {
     private int id;
-    private int name;
-    private int profession;
+    private String name;
+    private String profession;
 
-    public TeacherObj(int pId, int pName, int pProfession) 
+    public TeacherObj(int pId, String pName, String pProfession) 
     {
         setId(pId);
         setName(pName);
@@ -23,21 +23,21 @@ public class TeacherObj
         this.id = pId;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    private void setName(int pName) 
+    private void setName(String pName) 
     {
         this.name = pName;
     }
 
-    public int getProfession() 
+    public String getProfession() 
     {
         return profession;
     }
 
-    private void setProfession(int pProfession) 
+    private void setProfession(String pProfession) 
     {
         this.profession = pProfession;
     }
