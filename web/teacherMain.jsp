@@ -9,9 +9,31 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Teacher Main</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Teacher Main</h1>
+        <br>
+        
+        <a href="newTeacher.html">New Teacher</a>
+        <br><br>
+        <table style="width:40%" border="1">
+          <tr>
+            <th>Name</th>
+            <th>Profession</th>
+          </tr>
+          <tr>
+            <td>Jill Smith</td>
+            <td>Programmer</td>
+            <td>update</td>
+            <td>delete</td>
+          </tr>
+          <tr>
+            <td>Eve Jackson</td>
+            <td>Economist</td>
+            <td>update</td>
+            <td>delete</td>            
+          </tr>
+        </table>
     </body>
 </html>
