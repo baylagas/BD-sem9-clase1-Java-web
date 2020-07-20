@@ -11,12 +11,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Teacher Main</title>
     </head>
+    <%
+        int rows = (int)request.getSession().getAttribute("rows");
+    %>
     <body>
         <h1>Teacher Main</h1>
         <br>
         
         <a href="newTeacher.html">New Teacher</a>
         <br><br>
+        <%
+        if(rows>0)
+        {
+        %>
+            <p style="color:red;"><%= rows %> affected</p>
+            <br><br>
+        <%
+        }
+        %>
         <table style="width:40%" border="1">
           <tr>
             <th>Name</th>

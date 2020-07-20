@@ -1,5 +1,6 @@
 package eduwebapp.servlets;
 
+import eduwebapp.logic.TeacherLogic;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,6 +16,9 @@ public class TeacherServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String strConnString = "jdbc:mysql://localhost/cardexdb?"
+                + "user=root&password=12345&"
+                + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
         
         switch (strFormId) 
@@ -23,6 +27,11 @@ public class TeacherServlet extends HttpServlet
                 System.out.println("code for insert new...");
                 String strName = request.getParameter("name");
                 String strProfession = request.getParameter("profession");
+                TeacherLogic logic = new TeacherLogic(strConnString);
+                int rows = logic.insertNewTeacher(strName, strProfession);
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("teacherMain.jsp");
+                
                 break;
             case "2":
                 System.out.println("code for delete...");
