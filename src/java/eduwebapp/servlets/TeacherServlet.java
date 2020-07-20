@@ -17,25 +17,25 @@ public class TeacherServlet extends HttpServlet
     {
         String strFormId = request.getParameter("formid");
         
-        if(strFormId.equals("1"))
+        switch (strFormId) 
         {
-            System.out.println("code for insert new...");
-        }
-        else if(strFormId.equals("2"))
-        {
-            System.out.println("code for delete...");
-        }
-        else if(strFormId.equals("3"))
-        {
-            System.out.println("code for select...");
-        }
-        else if(strFormId.equals("4"))
-        {
-            System.out.println("code for update part 1...");
-        }
-        else if(strFormId.equals("5"))
-        {
-            System.out.println("code for update part 2...");
+            case "1":
+                System.out.println("code for insert new...");
+                break;
+            case "2":
+                System.out.println("code for delete...");
+                break;
+            case "3":
+                System.out.println("code for select...");
+                break;
+            case "4":
+                System.out.println("code for update part 1...");
+                break;
+            case "5":
+                System.out.println("code for update part 2...");
+                break;
+            default:
+                break;
         }
     }
 
