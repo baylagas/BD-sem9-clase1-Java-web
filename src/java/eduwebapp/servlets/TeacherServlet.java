@@ -20,6 +20,7 @@ public class TeacherServlet extends HttpServlet
                 + "user=root&password=12345&"
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
+        request.getSession().setAttribute("rows", 0);
         
         switch (strFormId) 
         {

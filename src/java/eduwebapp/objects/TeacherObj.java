@@ -18,7 +18,7 @@ public class TeacherObj
         return id;
     }
 
-    public void setId(int pId) 
+    private void setId(int pId) 
     {
         this.id = pId;
     }
@@ -27,7 +27,7 @@ public class TeacherObj
         return name;
     }
 
-    public void setName(int pName) 
+    private void setName(int pName) 
     {
         this.name = pName;
     }
@@ -37,7 +37,7 @@ public class TeacherObj
         return profession;
     }
 
-    public void setProfession(int pProfession) 
+    private void setProfession(int pProfession) 
     {
         this.profession = pProfession;
     }
