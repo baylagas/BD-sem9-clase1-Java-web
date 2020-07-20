@@ -20,4 +20,13 @@ public class TeacherLogic extends Logic
         int rows = database.executeNonQueryRows(sql);
         return rows;
     }
+    
+    public int deleteTeacher(int pId)
+    {
+        DatabaseX database = getDatabase();
+        String sql = "DELETE FROM cardexdb.profesor "
+                + "WHERE id = '"+pId+"';";
+        int rows = database.executeNonQueryRows(sql);
+        return rows;
+    }
 }
