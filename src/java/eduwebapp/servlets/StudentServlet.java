@@ -1,7 +1,7 @@
 package eduwebapp.servlets;
 
+import eduwebapp.logic.StudentLogic;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +15,32 @@ public class StudentServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
+        String strConnString = "jdbc:mysql://localhost/cardexdb?"
+                + "user=root&password=12345&"
+                + "autoReconnect=true&useSSL=false";
+        String strFormId = request.getParameter("formid");
+        StudentLogic logic;
         
+        switch (strFormId) 
+        {
+            case "1":
+                System.out.println("code for insert new...");
+                break;
+            case "2":
+                System.out.println("code for delete...");
+                break;
+            case "3":
+                System.out.println("code for select...");
+                break;
+            case "4":
+                System.out.println("code for update part 1...");
+                break;
+            case "5":
+                System.out.println("code for update part 2...");
+                break;
+            default:
+                break;                       
+        }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
