@@ -53,7 +53,7 @@
                     <tr>
                       <td><%= temp.getName() %></td>
                       <td><%= temp.getProfession() %></td>
-                      <td>update</td>
+                      <td><a href="TeacherServlet?formid=4&id=<%= temp.getId()%>">update</a></td>
                       <td><a href="TeacherServlet?formid=2&id=<%= temp.getId()%>">delete</a></td>
                     </tr>
           <%

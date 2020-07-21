@@ -69,4 +69,38 @@ public class TeacherLogic extends Logic
         
         return teacherArray;
     }
+    
+    public TeacherObj getTeacherById(int pId)
+    {
+        DatabaseX database = getDatabase();
+        ArrayList<TeacherObj> teacherArray = new ArrayList<>();
+        String sql = "select * from cardexdb.profesor where id="+pId+";";
+        ResultSet result = database.executeQuery(sql);
+        
+        TeacherObj temp = null;
+        
+        if(result!=null)
+        {
+            
+            try 
+            {
+                int iId;
+                String strName;
+                String strProfesion;
+                while(result.next())
+                {
+                    iId = result.getInt("id");
+                    strName = result.getString("name");
+                    strProfesion = result.getString("profesion");
+                    temp = new TeacherObj(pId, strName, strProfesion);
+                }
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(TeacherLogic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return temp;
+    }
+    
 }

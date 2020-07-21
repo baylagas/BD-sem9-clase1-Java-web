@@ -23,6 +23,8 @@ public class TeacherServlet extends HttpServlet
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
         int rows;
+        String strId;
+        int iId;
         request.getSession().setAttribute("rows", 0);
         TeacherLogic logic;
         
@@ -46,8 +48,8 @@ public class TeacherServlet extends HttpServlet
             case "2":
                 System.out.println("code for delete...");
                 //al inicio
-                String strId = request.getParameter("id");
-                int iId = Integer.parseInt(strId);
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
                 
                 //enmedio
                 logic = new TeacherLogic(strConnString);
@@ -72,6 +74,18 @@ public class TeacherServlet extends HttpServlet
                 break;
             case "4":
                 System.out.println("code for update part 1...");
+                //al inicio
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new TeacherLogic(strConnString);
+                TeacherObj teacherObject = logic.getTeacherById(iId);
+                
+                //al final
+                request.getSession().setAttribute("teacherobject", teacherObject);
+                response.sendRedirect("updateTeacher.jsp");
+                
                 break;
             case "5":
                 System.out.println("code for update part 2...");
