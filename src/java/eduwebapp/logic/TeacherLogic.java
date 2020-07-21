@@ -102,5 +102,15 @@ public class TeacherLogic extends Logic
         }
         return temp;
     }
+
+    public int updateTeacher(int pId, String pName, String pProfesion) 
+    {
+        DatabaseX database = getDatabase();
+        String sql = "UPDATE cardexdb.profesor "
+                + "SET name = '"+pName+"', profesion='"+pProfesion+"' "
+                + "WHERE (id = '"+pId+"');";
+        int rows = database.executeNonQueryRows(sql);
+        return rows;
+    }
     
 }

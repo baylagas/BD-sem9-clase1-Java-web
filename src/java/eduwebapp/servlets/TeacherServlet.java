@@ -22,9 +22,10 @@ public class TeacherServlet extends HttpServlet
                 + "user=root&password=12345&"
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
-        int rows;
-        String strId;
-        int iId;
+        
+        int rows, iId;
+        String strId, strName, strProfession;
+        
         request.getSession().setAttribute("rows", 0);
         TeacherLogic logic;
         
@@ -33,8 +34,8 @@ public class TeacherServlet extends HttpServlet
             case "1":                
                 System.out.println("code for insert new...");
                 //al inicio
-                String strName = request.getParameter("name");
-                String strProfession = request.getParameter("profession");
+                strName = request.getParameter("name");
+                strProfession = request.getParameter("profession");
                 
                 //enmedio
                 logic = new TeacherLogic(strConnString);
@@ -89,6 +90,18 @@ public class TeacherServlet extends HttpServlet
                 break;
             case "5":
                 System.out.println("code for update part 2...");
+                
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                strName = request.getParameter("name");
+                strProfession = request.getParameter("profession");
+                
+                logic = new TeacherLogic(strConnString);
+                rows = logic.updateTeacher(iId, strName, strProfession);
+                
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("TeacherServlet?formid=3");
+                
                 break;
             default:
                 break;
