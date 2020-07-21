@@ -1,7 +1,9 @@
 package eduwebapp.servlets;
 
 import eduwebapp.logic.StudentLogic;
+import eduwebapp.objects.StudentObj;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +33,14 @@ public class StudentServlet extends HttpServlet
                 break;
             case "3":
                 System.out.println("code for select...");
+                //enmedio
+                logic = new StudentLogic(strConnString);
+                ArrayList<StudentObj> studentArray = logic.getAllStudents();
+                
+                //al final
+                request.getSession().setAttribute("studentarray", studentArray);
+                response.sendRedirect("studentMain.jsp");
+                
                 break;
             case "4":
                 System.out.println("code for update part 1...");
