@@ -24,7 +24,7 @@
         <h1>Student Main</h1>
         <br>
         
-        <a href="newStudent.html">New Teacher</a>
+        <a href="newStudent.html">New Student</a>
         <br><br>
         <%
         if(rows>0)
