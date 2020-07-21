@@ -4,6 +4,9 @@
     Author     : balbi
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="eduwebapp.objects.TeacherObj"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +16,9 @@
     </head>
     <%
         int rows = (int)request.getSession().getAttribute("rows");
+        ArrayList<TeacherObj> array = 
+                (ArrayList<TeacherObj>)request.getSession()
+                        .getAttribute("teacherarray");
     %>
     <body>
         <h1>Teacher Main</h1>
@@ -34,18 +40,27 @@
             <th>Name</th>
             <th>Profession</th>
           </tr>
-          <tr>
-            <td>Jill Smith</td>
-            <td>Programmer</td>
-            <td>update</td>
-            <td>delete</td>
-          </tr>
-          <tr>
-            <td>Eve Jackson</td>
-            <td>Economist</td>
-            <td>update</td>
-            <td>delete</td>            
-          </tr>
+          <%
+              Iterator<TeacherObj> iteArray= null;
+              if(array!=null)
+              {
+                  iteArray = array.iterator();
+                  TeacherObj temp = null;
+                  while(iteArray.hasNext())
+                  {
+                      temp = iteArray.next();
+          %>
+                    <tr>
+                      <td><%= temp.getName() %></td>
+                      <td><%= temp.getProfession() %></td>
+                      <td>update</td>
+                      <td><a href="TeacherServlet?formid=2&id=<%= temp.getId()%>">delete</a></td>
+                    </tr>
+          <%
+                   }
+              }
+          %>
+          
         </table>
     </body>
 </html>

@@ -1,5 +1,6 @@
 package eduwebapp.objects;
 
+//pojo Plain Old Java Object
 public class TeacherObj 
 {
     private int id;

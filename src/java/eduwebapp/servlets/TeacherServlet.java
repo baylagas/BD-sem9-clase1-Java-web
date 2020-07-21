@@ -3,7 +3,6 @@ package eduwebapp.servlets;
 import eduwebapp.logic.TeacherLogic;
 import eduwebapp.objects.TeacherObj;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 public class TeacherServlet extends HttpServlet 
 {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, 
+                                    HttpServletResponse response)
             throws ServletException, IOException 
     {
         String strConnString = "jdbc:mysql://localhost/cardexdb?"
                 + "user=root&password=12345&"
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
+        int rows;
         request.getSession().setAttribute("rows", 0);
         TeacherLogic logic;
         
@@ -29,23 +30,45 @@ public class TeacherServlet extends HttpServlet
         {
             case "1":                
                 System.out.println("code for insert new...");
+                //al inicio
                 String strName = request.getParameter("name");
                 String strProfession = request.getParameter("profession");
+                
+                //enmedio
                 logic = new TeacherLogic(strConnString);
-                int rows = logic.insertNewTeacher(strName, strProfession);
+                rows = logic.insertNewTeacher(strName, strProfession);
+                
+                //al final
                 request.getSession().setAttribute("rows", rows);
-                response.sendRedirect("teacherMain.jsp");
+                response.sendRedirect("TeacherServlet?formid=3");
                 
                 break;
             case "2":
                 System.out.println("code for delete...");
+                //al inicio
+                String strId = request.getParameter("id");
+                int iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new TeacherLogic(strConnString);
+                rows = logic.deleteTeacher(iId);
+                
+                //al final
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("TeacherServlet?formid=3");
+                
                 break;
             case "3":
                 System.out.println("code for select...");
+                
+                //enmedio
                 logic = new TeacherLogic(strConnString);
                 ArrayList<TeacherObj> teacherArray = logic.getAllTeachers();
+                
+                //al final
                 request.getSession().setAttribute("teacherarray", teacherArray);
                 response.sendRedirect("teacherMain.jsp");
+                
                 break;
             case "4":
                 System.out.println("code for update part 1...");
