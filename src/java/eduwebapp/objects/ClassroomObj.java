@@ -6,11 +6,18 @@ public class ClassroomObj
     private String codigo;
     private int capacidad;
 
+    public ClassroomObj(int pId, String pCodigo, int pCapacidad) 
+    {
+        setId(pId);
+        setCodigo(pCodigo);
+        setCapacidad(pCapacidad);
+    }
+
     public int getId() {
         return id;
     }
 
-    public void setId(int pId) {
+    private void setId(int pId) {
         this.id = pId;
     }
 
@@ -18,7 +25,7 @@ public class ClassroomObj
         return codigo;
     }
 
-    public void setCodigo(String pCodigo) {
+    private void setCodigo(String pCodigo) {
         this.codigo = pCodigo;
     }
 
@@ -26,7 +33,7 @@ public class ClassroomObj
         return capacidad;
     }
 
-    public void setCapacidad(int pCapacidad) {
+    private void setCapacidad(int pCapacidad) {
         this.capacidad = pCapacidad;
     }
     
