@@ -22,14 +22,42 @@ public class StudentServlet extends HttpServlet
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
         StudentLogic logic;
+        String strName,strAge,strId;
+        int iAge, rows, iId;
         
         switch (strFormId) 
         {
             case "1":
                 System.out.println("code for insert new...");
+                
+                //al inicio
+                strName = request.getParameter("name");
+                strAge = request.getParameter("age");
+                
+                //enmedio
+                logic = new StudentLogic(strConnString);
+                rows = logic.insertNewStudent(strName, strAge);
+                
+                //al final
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("StudentServlet?formid=3");                
+                
                 break;
             case "2":
                 System.out.println("code for delete...");
+                
+                //al inicio
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new StudentLogic(strConnString);
+                rows = logic.deleteTeacher(iId);
+                
+                //al final
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("StudentServlet?formid=3");
+                
                 break;
             case "3":
                 System.out.println("code for select...");
