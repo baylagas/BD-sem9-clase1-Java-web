@@ -72,6 +72,19 @@ public class StudentServlet extends HttpServlet
                 break;
             case "4":
                 System.out.println("code for update part 1...");
+                
+                //al inicio
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new StudentLogic(strConnString);
+                StudentObj studentObject = logic.getStudentById(iId);
+                
+                //al final
+                request.getSession().setAttribute("studentobject", studentObject);
+                response.sendRedirect("updateStudent.jsp");
+                
                 break;
             case "5":
                 System.out.println("code for update part 2...");
