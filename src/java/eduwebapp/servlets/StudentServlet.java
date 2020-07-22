@@ -88,6 +88,19 @@ public class StudentServlet extends HttpServlet
                 break;
             case "5":
                 System.out.println("code for update part 2...");
+                
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                strName = request.getParameter("name");
+                strAge = request.getParameter("age");
+                iAge = Integer.parseInt(strAge);
+                
+                logic = new StudentLogic(strConnString);
+                rows = logic.updateStudent(iId, strName, iAge);
+                
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("StudentServlet?formid=3");                
+                
                 break;
             default:
                 break;                       
