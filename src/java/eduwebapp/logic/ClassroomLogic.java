@@ -11,7 +11,7 @@ import java.util.logging.Level;
 
 public class ClassroomLogic extends Logic
 {
-
+    //metodo constructor
     public ClassroomLogic(String pConnectionString) 
     {
         super(pConnectionString);

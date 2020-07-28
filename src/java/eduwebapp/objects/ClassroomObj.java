@@ -2,9 +2,9 @@ package eduwebapp.objects;
 
 public class ClassroomObj 
 {
-    private int id;
-    private String codigo;
-    private int capacidad;
+    private int id; 
+    private String codigo; 
+    private int capacidad; 
 
     public ClassroomObj(int pId, String pCodigo, int pCapacidad) 
     {
