@@ -24,7 +24,7 @@
         <h1>Section Main</h1>
         <br>
         
-        <a href="newSection.jsp">New Section</a>
+        <a href="SectionServlet?formid=6">New Section</a>
         <br><br>
         <%
         if(rows>0)

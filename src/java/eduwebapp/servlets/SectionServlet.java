@@ -1,7 +1,13 @@
 package eduwebapp.servlets;
 
+import eduwebapp.logic.ClassroomLogic;
 import eduwebapp.logic.SectionLogic;
+import eduwebapp.logic.StudentLogic;
+import eduwebapp.logic.TeacherLogic;
+import eduwebapp.objects.ClassroomObj;
 import eduwebapp.objects.SectionViewObj;
+import eduwebapp.objects.StudentObj;
+import eduwebapp.objects.TeacherObj;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -22,6 +28,7 @@ public class SectionServlet extends HttpServlet
                 + "autoReconnect=true&useSSL=false";
         String strFormId = request.getParameter("formid");
         SectionLogic logic;
+        request.getSession().setAttribute("rows", 0);
         
         switch(strFormId)
         {
@@ -43,6 +50,23 @@ public class SectionServlet extends HttpServlet
             case "4":
                 break;
             case "5":
+                break;
+            case "6":
+                System.out.println("get all parts for new section");
+                
+                TeacherLogic teacherLogic = new TeacherLogic(strConnString);
+                StudentLogic studentLogic = new StudentLogic(strConnString);
+                ClassroomLogic classroomLogic = new ClassroomLogic(strConnString);
+                
+                ArrayList<TeacherObj> teacherArray = teacherLogic.getAllTeachers();
+                ArrayList<StudentObj> studentArray = studentLogic.getAllStudents();
+                ArrayList<ClassroomObj> classroomArray = classroomLogic.getAllClassrooms();
+                
+                request.getSession().setAttribute("teacherarray", teacherArray);
+                request.getSession().setAttribute("studentarray", studentArray);
+                request.getSession().setAttribute("classroomarray", classroomArray);
+                response.sendRedirect("newSection.jsp");                
+                
                 break;
             default:
                 break;

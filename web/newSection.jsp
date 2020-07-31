@@ -1,0 +1,88 @@
+<%-- 
+    Document   : newSection
+    Created on : Jul 31, 2020, 7:31:47 AM
+    Author     : balbi
+--%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="eduwebapp.objects.ClassroomObj"%>
+<%@page import="eduwebapp.objects.StudentObj"%>
+<%@page import="eduwebapp.objects.TeacherObj"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>New Section</title>
+
+    </head>
+    <%
+        ArrayList<TeacherObj> teacherArray = 
+                (ArrayList<TeacherObj>) request.getSession()
+                        .getAttribute("teacherarray");
+        ArrayList<StudentObj> studentArray = 
+                (ArrayList<StudentObj>) request.getSession()
+                        .getAttribute("studentarray");
+        ArrayList<ClassroomObj> classroomArray = 
+                (ArrayList<ClassroomObj>) request.getSession()
+                        .getAttribute("classroomarray");
+    %>
+    <body>
+        <h1>New Section</h1>
+        <br>
+        
+        <form action="SectionServlet" method="get">
+            <%
+                Iterator<TeacherObj> iteTeacher = teacherArray.iterator();
+            %>
+            <label for="profesor">Profesor:</label>
+            <br>
+            <select id="profesor" name="profesor" required>
+              <option value="0"></option>
+              <%
+                  if(iteTeacher!=null)
+                  {
+                      TeacherObj temp;
+                      while(iteTeacher.hasNext())
+                      {
+                          temp = iteTeacher.next();
+              %>
+                    <option value="<%= temp.getId() %>"><%= temp.getName() %></option>
+              <%
+                      }
+                  }
+              %>
+            </select>            
+            <br><br>
+            
+            <label for="aula">Aula:</label>
+            <br>
+            <select id="aula" name="aula">
+              <option value="0"></option>
+              <option value="1">Sum</option>
+              <option value="2">Aula 02</option>
+            </select>            
+            <br><br>
+
+            <label for="alumno">Alumno:</label>
+            <br>
+            <select id="alumno" name="alumno">
+              <option value="0"></option>
+              <option value="1">Diego</option>
+              <option value="2">Mari</option>
+              <option value="3">Saul</option>
+              <option value="4">Paola</option>
+            </select>            
+            <br><br>
+            
+            Nombre: <br>
+            <input type="text" id="name" name="name" />
+            <br><br>
+            
+            <input type="submit" value="Send" />
+            <input type="hidden" name="formid" value="1" />
+        </form>
+
+    </body>
+</html>
