@@ -79,16 +79,29 @@
               %>
             </select>            
             <br><br>
-
+            
+            <%
+                Iterator<StudentObj> iteStudent = studentArray.iterator();
+            %>
             <label for="alumno">Alumno:</label>
             <br>
-            <select id="alumno" name="alumno">
-              <option value="0"></option>
-              <option value="1">Diego</option>
-              <option value="2">Mari</option>
-              <option value="3">Saul</option>
-              <option value="4">Paola</option>
-            </select>            
+            <select id="alumno" name="alumno" required>
+              <option value="">--</option>
+              <%
+                  if(iteStudent!=null)
+                  {
+                      StudentObj temp;
+                      
+                      while(iteStudent.hasNext())
+                      {
+                          temp = iteStudent.next();
+              %>
+                    <option value="<%= temp.getId() %>"><%= temp.getName() %></option>
+              <%
+                      }
+                  }
+              %>
+            </select>
             <br><br>
             
             Nombre: <br>

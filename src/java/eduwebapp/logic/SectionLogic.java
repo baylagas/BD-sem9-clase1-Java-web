@@ -17,13 +17,13 @@ public class SectionLogic extends Logic
         super(pConnectionString);
     }
     
-    public int insertNewSection(int pId, int pIdProfesor, int pIdAula, 
+    public int insertNewSection(int pIdProfesor, int pIdAula, 
             int pIdAlumno, String pName)
     {
         DatabaseX database = getDatabase();
         String sql = "INSERT INTO cardexdb.seccion "
                 + "(`id`,`idprofesor`,`idaula`,`idalumno`,`name`) "
-                + "VALUES("+pId+","+pIdProfesor+","+pIdAula+","+pIdAlumno+","
+                + "VALUES(0,"+pIdProfesor+","+pIdAula+","+pIdAlumno+","
                 + "'"+pName+"');";
         int rows = database.executeNonQueryRows(sql);
         return rows;

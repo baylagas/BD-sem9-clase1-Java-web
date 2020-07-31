@@ -29,10 +29,32 @@ public class SectionServlet extends HttpServlet
         String strFormId = request.getParameter("formid");
         SectionLogic logic;
         request.getSession().setAttribute("rows", 0);
+        /*profesor=12&aula=4&alumno=4&name=light+year&formid=1*/
+        String strProfesor, strAula, strAlumno, strName;
+        int iIdProfesor, iIdAula, iIdAlumno, rows;
         
         switch(strFormId)
         {
             case "1":
+                System.out.println("code for insert new...");
+                
+                //al inicio
+                strProfesor = request.getParameter("profesor");
+                iIdProfesor = Integer.parseInt(strProfesor);
+                strAula = request.getParameter("aula");
+                iIdAula = Integer.parseInt(strAula);
+                strAlumno = request.getParameter("alumno");
+                iIdAlumno = Integer.parseInt(strAlumno);
+                strName = request.getParameter("name");
+                
+                //enmedio
+                logic = new SectionLogic(strConnString);
+                rows = logic.insertNewSection(iIdProfesor, iIdAula, iIdAlumno, strName);
+                
+                //al final
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("SectionServlet?formid=3");
+                
                 break;
             case "2":
                 break;
