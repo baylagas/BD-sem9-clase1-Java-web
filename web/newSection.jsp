@@ -39,7 +39,7 @@
             <label for="profesor">Profesor:</label>
             <br>
             <select id="profesor" name="profesor" required>
-              <option value="0"></option>
+              <option value="">--</option>
               <%
                   if(iteTeacher!=null)
                   {
@@ -56,12 +56,27 @@
             </select>            
             <br><br>
             
+            <%
+                Iterator<ClassroomObj> iteClassroom = classroomArray.iterator();
+            %>
             <label for="aula">Aula:</label>
             <br>
-            <select id="aula" name="aula">
-              <option value="0"></option>
-              <option value="1">Sum</option>
-              <option value="2">Aula 02</option>
+            <select id="aula" name="aula" required>
+              <option value="">--</option>
+              <%
+                  if(iteClassroom!=null)
+                  {
+                      ClassroomObj temp;
+                      
+                      while(iteClassroom.hasNext())
+                      {
+                          temp = iteClassroom.next();
+              %>
+                    <option value="<%= temp.getId() %>"><%= temp.getCodigo() %></option>
+              <%
+                      }
+                  }
+              %>
             </select>            
             <br><br>
 
