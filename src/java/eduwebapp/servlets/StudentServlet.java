@@ -24,6 +24,7 @@ public class StudentServlet extends HttpServlet
         StudentLogic logic;
         String strName,strAge,strId;
         int iAge, rows, iId;
+        request.getSession().setAttribute("rows", 0);
         
         switch (strFormId) 
         {

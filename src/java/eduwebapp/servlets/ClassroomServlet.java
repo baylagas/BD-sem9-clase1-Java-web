@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ClassroomServlet", urlPatterns = {"/ClassroomServlet"})
 public class ClassroomServlet extends HttpServlet 
@@ -27,6 +26,7 @@ public class ClassroomServlet extends HttpServlet
         
         String strCodigo, strCapacidad, strId;
         int rows, iCapacidad, iId;
+        request.getSession().setAttribute("rows", 0);
         
         switch(strFormId)
         {
