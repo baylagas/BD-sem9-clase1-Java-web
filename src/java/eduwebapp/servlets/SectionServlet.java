@@ -22,6 +22,7 @@ public class SectionServlet extends HttpServlet
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
+            
     {
         String strConnString = "jdbc:mysql://localhost/cardexdb?"
                 + "user=root&password=12345&"
@@ -30,8 +31,8 @@ public class SectionServlet extends HttpServlet
         SectionLogic logic;
         request.getSession().setAttribute("rows", 0);
         /*profesor=12&aula=4&alumno=4&name=light+year&formid=1*/
-        String strProfesor, strAula, strAlumno, strName;
-        int iIdProfesor, iIdAula, iIdAlumno, rows;
+        String strProfesor, strAula, strAlumno, strName, strId;
+        int iIdProfesor, iIdAula, iIdAlumno, rows, iId;
         
         switch(strFormId)
         {
@@ -57,6 +58,21 @@ public class SectionServlet extends HttpServlet
                 
                 break;
             case "2":
+
+                System.out.println("code for delete...");
+                
+                //al inicio
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new SectionLogic(strConnString);
+                rows = logic.deleteSection(iId);
+                
+                //al final
+                request.getSession().setAttribute("rows", rows);
+                response.sendRedirect("SectionServlet?formid=3");
+                
                 break;
             case "3":
                 System.out.println("get all section");
@@ -70,6 +86,21 @@ public class SectionServlet extends HttpServlet
                 
                 break;
             case "4":
+                System.out.println("code for update part 1...");
+                
+                //al inicio
+                strId = request.getParameter("id");
+                iId = Integer.parseInt(strId);
+                
+                //enmedio
+                logic = new SectionLogic(strConnString);
+                SectionObj sectionObject = logic.getSectionById(iId);
+                
+                //al final
+                request.getSession().setAttribute("sectionobject", sectionObject);
+                response.sendRedirect("updateSection.jsp");                
+                
+                
                 break;
             case "5":
                 break;

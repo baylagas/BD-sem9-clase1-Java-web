@@ -2,6 +2,7 @@ package eduwebapp.logic;
 
 import balcorpfw.database.DatabaseX;
 import balcorpfw.logic.Logic;
+import eduwebapp.objects.SectionObj;
 import eduwebapp.objects.SectionViewObj;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,5 +70,50 @@ public class SectionLogic extends Logic
         return sectionArray;        
         
     }
+    
+    public int deleteSection(int pId)
+    {
+        DatabaseX database = getDatabase();
+        String sql = "DELETE FROM cardexdb.seccion "
+                + "WHERE id = '"+pId+"';";
+        int rows = database.executeNonQueryRows(sql);
+        return rows;
+    } 
+
+    public SectionObj getSectionById(int pId)
+    {
+        DatabaseX database = getDatabase();
+        String sql = "select * from cardexdb.seccion where id="+pId+";";
+        ResultSet result = database.executeQuery(sql);
+        
+        SectionObj temp = null;
+        
+        if(result!=null)
+        {
+            
+            try 
+            {
+                int iId;
+                int iIdProfesor;
+                int iIdAula;
+                int iIdAlumno;
+                String strName;
+                while(result.next())
+                {
+                    iId = result.getInt("id");
+                    iIdProfesor = result.getInt("idprofesor");
+                    iIdAula = result.getInt("idaula");
+                    iIdAlumno = result.getInt("idalumno");
+                    strName = result.getString("name");
+                    temp = new SectionObj(iId, iIdProfesor, iIdAula, iIdAlumno, strName);
+                }
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(TeacherLogic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return temp;
+    } 
     
 }
