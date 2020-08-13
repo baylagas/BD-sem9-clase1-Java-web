@@ -35,6 +35,7 @@
         <%
         }
         %>
+        Count:<%= array.size() %><br>
         <table style="width:40%" border="1">
           <tr>
             <th>Profesor</th>
