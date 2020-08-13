@@ -5,6 +5,7 @@ import eduwebapp.logic.SectionLogic;
 import eduwebapp.logic.StudentLogic;
 import eduwebapp.logic.TeacherLogic;
 import eduwebapp.objects.ClassroomObj;
+import eduwebapp.objects.SectionObj;
 import eduwebapp.objects.SectionViewObj;
 import eduwebapp.objects.StudentObj;
 import eduwebapp.objects.TeacherObj;
@@ -33,6 +34,12 @@ public class SectionServlet extends HttpServlet
         /*profesor=12&aula=4&alumno=4&name=light+year&formid=1*/
         String strProfesor, strAula, strAlumno, strName, strId;
         int iIdProfesor, iIdAula, iIdAlumno, rows, iId;
+        TeacherLogic teacherLogic;
+        StudentLogic studentLogic;
+        ClassroomLogic classroomLogic;
+        ArrayList<TeacherObj> teacherArray;
+        ArrayList<StudentObj> studentArray;
+        ArrayList<ClassroomObj> classroomArray;
         
         switch(strFormId)
         {
@@ -88,18 +95,28 @@ public class SectionServlet extends HttpServlet
             case "4":
                 System.out.println("code for update part 1...");
                 
-                //al inicio
+                //al inicio                
                 strId = request.getParameter("id");
                 iId = Integer.parseInt(strId);
                 
                 //enmedio
                 logic = new SectionLogic(strConnString);
                 SectionObj sectionObject = logic.getSectionById(iId);
+                /******************************************************/
+                teacherLogic = new TeacherLogic(strConnString);
+                studentLogic = new StudentLogic(strConnString);
+                classroomLogic = new ClassroomLogic(strConnString);
+                teacherArray = teacherLogic.getAllTeachers();
+                studentArray = studentLogic.getAllStudents();
+                classroomArray = classroomLogic.getAllClassrooms();
+                
                 
                 //al final
                 request.getSession().setAttribute("sectionobject", sectionObject);
+                request.getSession().setAttribute("teacherarray", teacherArray);
+                request.getSession().setAttribute("studentarray", studentArray);
+                request.getSession().setAttribute("classroomarray", classroomArray);                
                 response.sendRedirect("updateSection.jsp");                
-                
                 
                 break;
             case "5":
@@ -107,13 +124,13 @@ public class SectionServlet extends HttpServlet
             case "6":
                 System.out.println("get all parts for new section");
                 
-                TeacherLogic teacherLogic = new TeacherLogic(strConnString);
-                StudentLogic studentLogic = new StudentLogic(strConnString);
-                ClassroomLogic classroomLogic = new ClassroomLogic(strConnString);
+                teacherLogic = new TeacherLogic(strConnString);
+                studentLogic = new StudentLogic(strConnString);
+                classroomLogic = new ClassroomLogic(strConnString);
                 
-                ArrayList<TeacherObj> teacherArray = teacherLogic.getAllTeachers();
-                ArrayList<StudentObj> studentArray = studentLogic.getAllStudents();
-                ArrayList<ClassroomObj> classroomArray = classroomLogic.getAllClassrooms();
+                teacherArray = teacherLogic.getAllTeachers();
+                studentArray = studentLogic.getAllStudents();
+                classroomArray = classroomLogic.getAllClassrooms();
                 
                 request.getSession().setAttribute("teacherarray", teacherArray);
                 request.getSession().setAttribute("studentarray", studentArray);
