@@ -59,10 +59,23 @@ public class UserServlet extends HttpServlet
                 }
                 
                 //al final
-                if(bValidUser)
+                if(bValidUser) 
                 {
-                    request.getSession().setAttribute("current_user", userObject);
-                    response.sendRedirect("index_two.html");
+                    if (userObject!=null)
+                    {
+                        if (userObject.getIdtype()==1)
+                        {
+                            request.getSession().setAttribute("current_user", userObject);
+                            request.getSession().removeAttribute("message");
+                            response.sendRedirect("dashboard.jsp");
+                        }
+                        else
+                        {
+                            request.getSession().setAttribute("current_user", userObject);
+                            request.getSession().removeAttribute("message");
+                            response.sendRedirect("dashboard.jsp");
+                        }
+                    }
                 }
                 else
                 {
@@ -71,6 +84,10 @@ public class UserServlet extends HttpServlet
                 }
                 break;
             case "2":
+                
+                request.getSession().removeAttribute("current_user");
+                request.getSession().removeAttribute("message");
+                response.sendRedirect("index.jsp");
                 
                 break;
             case "3":
